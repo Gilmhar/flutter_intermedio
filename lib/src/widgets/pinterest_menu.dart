@@ -93,3 +93,9 @@ class _PinterestMenuButton extends StatelessWidget {
     );
   }
 }
+
+class _MenuModel with ChangeNotifier {
+  int _itemSeleccionado = 0;
+
+  int get getItemSeleccionado => this._itemSeleccionado;
+}
