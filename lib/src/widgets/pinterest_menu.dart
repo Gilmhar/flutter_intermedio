@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 class PinterestButton {
   final Function() onPressed;
   final IconData icon;
@@ -8,6 +10,9 @@ class PinterestButton {
 }
 
 class PinterestMenu extends StatelessWidget {
+
+  final bool mostrar;
+
   final List<PinterestButton> items = [
     PinterestButton(
         onPressed: () {
@@ -30,20 +35,20 @@ class PinterestMenu extends StatelessWidget {
         },
         icon: Icons.supervised_user_circle),
   ];
-  PinterestMenu({super.key});
+  
+  PinterestMenu({super.key, this.mostrar = true});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: _PinterestMenuBackground(child: _MenuItems(items)),
-    );
+    return ChangeNotifierProvider(
+        create: (_) => _MenuModel(),
+        child: _PinterestMenuBackground(child: AnimatedOpacity(duration: const Duration(milliseconds: 250),opacity: (mostrar)? 1 : 0,child: _MenuItems(items))));
   }
 }
 
 class _PinterestMenuBackground extends StatelessWidget {
-
   final Widget child;
-  
+
   const _PinterestMenuBackground({required this.child});
 
   @override
@@ -82,13 +87,19 @@ class _PinterestMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final itemSeleccionado = Provider.of<_MenuModel>(context).getItemSeleccionado;
+
     return GestureDetector(
-      onTap: item.onPressed,
+      onTap: (){
+        Provider.of<_MenuModel>(context, listen: false).setItemSeleccionado = index;
+        item.onPressed();
+      },
       behavior: HitTestBehavior.translucent,
       child: Icon(
         item.icon,
-        size: 25,
-        color: Colors.blueGrey,
+        size: (itemSeleccionado == index) ? 35 : 25,
+        color: (itemSeleccionado == index) ? Colors.black : Colors.blueGrey
       ),
     );
   }
@@ -97,5 +108,10 @@ class _PinterestMenuButton extends StatelessWidget {
 class _MenuModel with ChangeNotifier {
   int _itemSeleccionado = 0;
 
-  int get getItemSeleccionado => this._itemSeleccionado;
+  int get getItemSeleccionado => _itemSeleccionado;
+
+  set setItemSeleccionado(int index) {
+    _itemSeleccionado = index;
+    notifyListeners();
+  }
 }
