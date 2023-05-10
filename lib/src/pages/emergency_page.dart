@@ -20,33 +20,70 @@ class EmergencyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = <ItemBoton>[
-      ItemBoton(FontAwesomeIcons.carBurst, 'Motor Accident',
-          const Color.fromARGB(255, 77, 31, 185), const Color.fromARGB(255, 138, 104, 238)),
-      ItemBoton(FontAwesomeIcons.plus, 'Medical Emergency',
-          const Color.fromARGB(255, 76, 157, 243), const Color.fromARGB(255, 46, 76, 245)),
+      ItemBoton(
+          FontAwesomeIcons.carBurst,
+          'Motor Accident',
+          const Color.fromARGB(255, 77, 31, 185),
+          const Color.fromARGB(255, 138, 104, 238)),
+      ItemBoton(
+          FontAwesomeIcons.plus,
+          'Medical Emergency',
+          const Color.fromARGB(255, 76, 157, 243),
+          const Color.fromARGB(255, 46, 76, 245)),
       ItemBoton(FontAwesomeIcons.masksTheater, 'Theft / Harrasement',
           const Color(0xffF2D572), const Color(0xffE06AA3)),
-      ItemBoton(FontAwesomeIcons.personBiking, 'Awards', const Color.fromARGB(255, 40, 114, 134),
+      ItemBoton(
+          FontAwesomeIcons.personBiking,
+          'Awards',
+          const Color.fromARGB(255, 40, 114, 134),
           const Color.fromARGB(255, 86, 179, 148)),
-      ItemBoton(FontAwesomeIcons.carBurst, 'Motor Accident',
-          const Color.fromARGB(255, 77, 31, 185), const Color.fromARGB(255, 138, 104, 238)),
-      ItemBoton(FontAwesomeIcons.plus, 'Medical Emergency',
-          const Color.fromARGB(255, 76, 157, 243), const Color.fromARGB(255, 46, 76, 245)),
+      ItemBoton(
+          FontAwesomeIcons.carBurst,
+          'Motor Accident',
+          const Color.fromARGB(255, 77, 31, 185),
+          const Color.fromARGB(255, 138, 104, 238)),
+      ItemBoton(
+          FontAwesomeIcons.plus,
+          'Medical Emergency',
+          const Color.fromARGB(255, 76, 157, 243),
+          const Color.fromARGB(255, 46, 76, 245)),
       ItemBoton(FontAwesomeIcons.masksTheater, 'Theft / Harrasement',
           const Color(0xffF2D572), const Color(0xffE06AA3)),
-      ItemBoton(FontAwesomeIcons.personBiking, 'Awards', const Color.fromARGB(255, 40, 114, 134),
+      ItemBoton(
+          FontAwesomeIcons.personBiking,
+          'Awards',
+          const Color.fromARGB(255, 40, 114, 134),
           const Color.fromARGB(255, 86, 179, 148)),
-      ItemBoton(FontAwesomeIcons.carBurst, 'Motor Accident',
-          const Color.fromARGB(255, 77, 31, 185), const Color.fromARGB(255, 138, 104, 238)),
-      ItemBoton(FontAwesomeIcons.plus, 'Medical Emergency',
-          const Color.fromARGB(255, 76, 157, 243), const Color.fromARGB(255, 46, 76, 245)),
+      ItemBoton(
+          FontAwesomeIcons.carBurst,
+          'Motor Accident',
+          const Color.fromARGB(255, 77, 31, 185),
+          const Color.fromARGB(255, 138, 104, 238)),
+      ItemBoton(
+          FontAwesomeIcons.plus,
+          'Medical Emergency',
+          const Color.fromARGB(255, 76, 157, 243),
+          const Color.fromARGB(255, 46, 76, 245)),
       ItemBoton(FontAwesomeIcons.masksTheater, 'Theft / Harrasement',
           const Color(0xffF2D572), const Color(0xffE06AA3)),
-      ItemBoton(FontAwesomeIcons.personBiking, 'Awards', const Color.fromARGB(255, 40, 114, 134),
+      ItemBoton(
+          FontAwesomeIcons.personBiking,
+          'Awards',
+          const Color.fromARGB(255, 40, 114, 134),
           const Color.fromARGB(255, 86, 179, 148)),
     ];
 
-    List<Widget> itemMap = items.map((e) => BotonGordo(icon:e.icon,texto: e.texto, color1Backg: e.color1Backg, color2Backg: e.color2Backg, onPress: (){print('Hola');},)).toList();
+    List<Widget> itemMap = items
+        .map((e) => BotonGordo(
+              icon: e.icon,
+              texto: e.texto,
+              color1Backg: e.color1Backg,
+              color2Backg: e.color2Backg,
+              onPress: () {
+                print('Hola');
+              },
+            ))
+        .toList();
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 18, 18, 20),
@@ -86,7 +123,7 @@ class BotonGordoTemp extends StatelessWidget {
       icon: FontAwesomeIcons.carBurst,
       texto: 'Motor Accident',
       color1Backg: const Color.fromARGB(255, 86, 179, 148),
-      color2Backg: const Color.fromARGB(255, 40, 114, 134), 
+      color2Backg: const Color.fromARGB(255, 40, 114, 134),
       onPress: () {
         print('tap');
       },
