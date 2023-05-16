@@ -153,11 +153,9 @@ class _Titulo extends StatelessWidget {
                   height: 8,
                   color: const Color(0xffF7CDD5),
                 )),
-            Container(
-              child: const Text(
-                'List',
-                style: TextStyle(color: Color(0xffD93A30), fontSize: 50),
-              ),
+            const Text(
+              'List',
+              style: TextStyle(color: Color(0xffD93A30), fontSize: 50),
             ),
           ],
         )
@@ -166,25 +164,25 @@ class _Titulo extends StatelessWidget {
   }
 }
 
-class _ListaTareas extends StatelessWidget {
-  final items = const [
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) => items[index],
-    );
-  }
-}
+// class _ListaTareas extends StatelessWidget {
+//   final items = const [
+//     _ListItem('Orange', Color(0xffF08F66)),
+//     _ListItem('Family', Color(0xffF2A38A)),
+//     _ListItem('Subscriptions', Color(0xffF7CDD5)),
+//     _ListItem('Books', Color(0xffFCEBAF)),
+//     _ListItem('Orange', Color(0xffF08F66)),
+//     _ListItem('Family', Color(0xffF2A38A)),
+//     _ListItem('Subscriptions', Color(0xffF7CDD5)),
+//     _ListItem('Books', Color(0xffFCEBAF)),
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//       itemCount: items.length,
+//       itemBuilder: (BuildContext context, int index) => items[index],
+//     );
+//   }
+// }
 
 class _ListItem extends StatelessWidget {
   final String titulo;
