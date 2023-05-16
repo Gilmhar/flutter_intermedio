@@ -5,7 +5,42 @@ class SliverListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _MiScroll());
+    return Scaffold(
+        body: Stack(
+      children: [
+        _MiScroll(),
+        Positioned(
+          bottom: -10,
+          right: 0,
+          child: _ButtonNewList(),
+        )
+      ],
+    ));
+  }
+}
+
+class _ButtonNewList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return ButtonTheme(
+        minWidth: size.width * 0.9,
+        height: 100,
+        child: MaterialButton(
+          onPressed: () {},
+          color: const Color(0xffED6762),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(50))),
+          child: const Text(
+            'CREATE NEW LIST',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3),
+          ),
+        ));
   }
 }
 
@@ -39,34 +74,56 @@ class _MiScroll extends StatelessWidget {
         //   title: Text('Hola mundo'),
         // ),
         SliverPersistentHeader(
-            floating: true, delegate: _SliverCustomHeaderDelegate()),
-        SliverList(delegate: SliverChildListDelegate(items))
+            floating: true,
+            delegate: _SliverCustomHeaderDelegate(
+                minheight: 170,
+                maxheight: 200,
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  color: Colors.white,
+                  child: _Titulo(),
+                ))),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          ...items,
+          const SizedBox(
+            height: 100,
+          )
+        ]))
       ],
     );
   }
 }
 
 class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double minheight;
+  final double maxheight;
+  final Widget child;
+
+  _SliverCustomHeaderDelegate({
+    required this.minheight,
+    required this.maxheight,
+    required this.child,
+  });
+
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // TODO: implement build
-    throw UnimplementedError();
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
   }
 
   @override
-  // TODO: implement maxExtent
-  double get maxExtent => throw UnimplementedError();
+  double get maxExtent => maxheight;
 
   @override
-  // TODO: implement minExtent
-  double get minExtent => throw UnimplementedError();
+  double get minExtent => minheight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
-    throw UnimplementedError();
+  bool shouldRebuild(_SliverCustomHeaderDelegate oldDelegate) {
+    return maxheight != oldDelegate.maxheight ||
+        minheight != oldDelegate.minheight ||
+        child != oldDelegate.child;
   }
-
 }
 
 class _Titulo extends StatelessWidget {
