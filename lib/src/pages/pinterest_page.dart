@@ -43,22 +43,26 @@ class _PinterestMenuLocation extends StatelessWidget {
               items: [
                 PinterestButton(
                     onPressed: () {
-                      print('Icon pie_chart');
+                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                      //print('Icon pie_chart');
                     },
                     icon: Icons.pie_chart),
                 PinterestButton(
                     onPressed: () {
-                      print('Icon search');
+                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                      //print('Icon search');
                     },
                     icon: Icons.search),
                 PinterestButton(
                     onPressed: () {
-                      print('Icon notifications');
+                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                      //print('Icon notifications');
                     },
                     icon: Icons.notifications),
                 PinterestButton(
                     onPressed: () {
-                      print('Icon supervised_user_circle');
+                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                      //print('Icon supervised_user_circle');
                     },
                     icon: Icons.supervised_user_circle),
               ],

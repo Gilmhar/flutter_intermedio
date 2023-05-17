@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'package:disenos_app/src/widgets/headers.dart';
 import 'package:disenos_app/src/widgets/boton_gordo.dart';
@@ -74,15 +75,19 @@ class EmergencyPage extends StatelessWidget {
     ];
 
     List<Widget> itemMap = items
-        .map((e) => BotonGordo(
-              icon: e.icon,
-              texto: e.texto,
-              color1Backg: e.color1Backg,
-              color2Backg: e.color2Backg,
-              onPress: () {
-                print('Hola');
-              },
-            ))
+        .map((e) => FadeInLeft(
+          duration: const Duration(milliseconds: 850),
+          child: BotonGordo(
+                icon: e.icon,
+                texto: e.texto,
+                color1Backg: e.color1Backg,
+                color2Backg: e.color2Backg,
+                onPress: () {
+                  //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                  //print('Hola');
+                },
+              ),
+        ))
         .toList();
 
     return Scaffold(
@@ -92,44 +97,65 @@ class EmergencyPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 200),
               child: ListView(
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     height: 80,
                   ),
-                  BotonGordoTemp(),
+                  ...itemMap,
                 ],
               ),
             ),
-            const IconHeader(
-              icon: FontAwesomeIcons.plus,
-              titulo: 'Atención Médica',
-              subtitulo: 'Haz solicitado',
-              color1Backg: Color.fromARGB(255, 26, 190, 62),
-              color2Backg: Color.fromARGB(255, 154, 236, 46),
-            )
+            _Encabezado()
           ],
         ));
   }
 }
 
-class BotonGordoTemp extends StatelessWidget {
-  const BotonGordoTemp({
-    super.key,
-  });
-
+class _Encabezado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BotonGordo(
-      icon: FontAwesomeIcons.carBurst,
-      texto: 'Motor Accident',
-      color1Backg: const Color.fromARGB(255, 86, 179, 148),
-      color2Backg: const Color.fromARGB(255, 40, 114, 134),
-      onPress: () {
-        print('tap');
-      },
+    return Stack(
+      children: <Widget>[
+        const IconHeader(
+          icon: FontAwesomeIcons.plus,
+          titulo: 'Asistencia Médica',
+          subtitulo: 'Haz solicitado',
+          color1Backg: Color.fromARGB(255, 26, 190, 62),
+          color2Backg: Color.fromARGB(255, 154, 236, 46),
+        ),
+        Positioned(
+            right: 0,
+            top: 45,
+            child: RawMaterialButton(
+                onPressed: () {},
+                shape: const CircleBorder(),
+                padding: const EdgeInsets.all(15.0),
+                child: const FaIcon(FontAwesomeIcons.ellipsisVertical,
+                    color: Colors.white)))
+      ],
     );
   }
 }
+
+// class BotonGordoTemp extends StatelessWidget {
+//   const BotonGordoTemp({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BotonGordo(
+//       icon: FontAwesomeIcons.carBurst,
+//       texto: 'Motor Accident',
+//       color1Backg: const Color.fromARGB(255, 86, 179, 148),
+//       color2Backg: const Color.fromARGB(255, 40, 114, 134),
+//       onPress: () {
+//         //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+//         //print('tap');
+//       },
+//     );
+//   }
+// }
 
 class PageHeader extends StatelessWidget {
   const PageHeader({
