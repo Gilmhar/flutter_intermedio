@@ -137,6 +137,7 @@ class _Encabezado extends StatelessWidget {
   }
 }
 
+//esta clase solo sirvió para poder modelar y ver el diseño de los botones, por eso ya no se manda llamar y ya no se implementa. Por eso esta comentada.
 // class BotonGordoTemp extends StatelessWidget {
 //   const BotonGordoTemp({
 //     super.key,
