@@ -117,7 +117,7 @@ class _Encabezado extends StatelessWidget {
     return Stack(
       children: <Widget>[
         const IconHeader(
-          icon: FontAwesomeIcons.plus,
+          icon: FontAwesomeIcons.heartPulse,
           titulo: 'Asistencia Médica',
           subtitulo: 'Haz solicitado',
           color1Backg: Color.fromARGB(255, 26, 190, 62),
