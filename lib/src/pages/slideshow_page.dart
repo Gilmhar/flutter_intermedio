@@ -27,10 +27,10 @@ class MiSlideShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slideshow(
       //puntosArriba: true,
-      colorPrimario: Colors.red,
-      colorSecundario: Colors.teal,
-      bulletPrimario: 1,
-      bulletSecundario: 12,
+      colorPrimario: Colors.amber,
+      colorSecundario: Colors.blue,
+      bulletPrimario: 12,
+      bulletSecundario: 8,
       slides: [
         SvgPicture.asset('assets/svg/slide-1.svg'),
         SvgPicture.asset('assets/svg/slide-2.svg'),

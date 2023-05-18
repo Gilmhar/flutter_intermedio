@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-//import 'package:disenos_app/src/pages/launcher_page.dart';
+import 'package:provider/provider.dart';
+
+import 'package:disenos_app/src/theme/them_changer.dart';
+import 'package:disenos_app/src/pages/launcher_page.dart';
 
 //import 'package:disenos_app/src/pages/slider_list_page.dart';
-import 'package:disenos_app/src/pages/emergency_page.dart';   
+//import 'package:disenos_app/src/pages/emergency_page.dart';
 // import 'package:disenos_app/src/pages/pinterest_page.dart';
 // import 'package:disenos_app/src/pages/slideshow_page.dart';
 //import 'package:disenos_app/src/labs/slidesshow_labs.dart';
@@ -13,7 +16,8 @@ import 'package:disenos_app/src/pages/emergency_page.dart';
 //import 'package:disenos_app/src/pages/graficas_circulares_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (_) => ThemeChanger(2), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,12 +26,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final currentTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    return MaterialApp(
+      theme: currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: EmergencyPage(),
+      home: const LauncherPage(),
     );
   }
 }
-
-
