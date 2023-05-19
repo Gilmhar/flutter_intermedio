@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:disenos_app/src/widgets/headers.dart';
 import 'package:disenos_app/src/widgets/boton_gordo.dart';
+import 'package:disenos_app/src/theme/them_changer.dart';
 
 class ItemBoton {
   final IconData icon;
@@ -20,6 +22,7 @@ class EmergencyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final  appTheme2 = Provider.of<ThemeChanger>(context).currentTheme;
     final items = <ItemBoton>[
       ItemBoton(
           FontAwesomeIcons.carBurst,
@@ -91,7 +94,7 @@ class EmergencyPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 18, 18, 20),
+        backgroundColor: (appTheme.darkTheme) ? appTheme.currentTheme.highlightColor : const Color.fromARGB(255, 18, 18, 20),
         body: Stack(
           children: [
             Container(

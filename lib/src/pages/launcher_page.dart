@@ -56,6 +56,7 @@ class _MenuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context);
+    final  appTheme2 = Provider.of<ThemeChanger>(context).currentTheme;
     return Drawer(
       child: Column(
         children: [
@@ -64,9 +65,9 @@ class _MenuPrincipal extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               width: double.infinity,
               height: 200,
-              child: const CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text(
+              child: CircleAvatar(
+                backgroundColor: appTheme2.colorScheme.secondary,
+                child: const Text(
                   'CS',
                   style: TextStyle(fontSize: 50),
                 ),
@@ -75,14 +76,14 @@ class _MenuPrincipal extends StatelessWidget {
           ),
           Expanded(child: _ListadeOpciones()),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.lightbulb_outlined,
-              color: Colors.blue,
+              color: appTheme2.colorScheme.secondary,
             ),
             title: const Text('Dark Mode'),
             trailing: Switch.adaptive(
                 value: appTheme.darkTheme,
-                activeColor: Colors.green,
+                activeColor: appTheme2.colorScheme.secondary,
                 onChanged: (value) {
                   appTheme.darkTheme = value;
                 }),
@@ -93,14 +94,14 @@ class _MenuPrincipal extends StatelessWidget {
             left: false,
             right: false,
             child: ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.add_to_home_screen,
-                color: Colors.blue,
+                color: appTheme2.colorScheme.secondary,
               ),
               title: const Text('Custom Theme'),
               trailing: Switch.adaptive(
                   value: appTheme.customTheme,
-                  activeColor: Colors.green,
+                  activeColor: appTheme2.colorScheme.secondary,
                   onChanged: (value) {
                     appTheme.customTheme = value;
                   }),
