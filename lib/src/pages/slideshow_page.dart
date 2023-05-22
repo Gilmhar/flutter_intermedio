@@ -33,8 +33,8 @@ class MiSlideShow extends StatelessWidget {
     final  appTheme2 = Provider.of<ThemeChanger>(context).currentTheme;
     return Slideshow(
       //puntosArriba: true,
-      colorPrimario:(appTheme.darkTheme) ? appTheme.currentTheme.highlightColor : Colors.amber,
-      colorSecundario: (appTheme.darkTheme) ? appTheme2.colorScheme.secondary : Colors.blue,
+      colorPrimario:(appTheme.darkTheme) ? appTheme2.colorScheme.secondary : Colors.amber,
+      colorSecundario: (appTheme.darkTheme) ? appTheme.currentTheme.highlightColor  : Colors.blue,
       bulletPrimario: 12,
       bulletSecundario: 8,
       slides: [

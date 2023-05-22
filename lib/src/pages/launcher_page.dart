@@ -11,9 +11,23 @@ class LauncherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    final appTheme2 = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diseños en Flutter'),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: Icon(Icons.account_circle, color: (appTheme2.darkTheme) ? Colors.black54 : Colors.white,));
+        }),
+        title: Text(
+          'Diseños en Flutter',
+          style: TextStyle(
+              color: (appTheme2.darkTheme) ? Colors.black54 : Colors.white),
+        ),
+        backgroundColor: appTheme.colorScheme.secondary,
       ),
       drawer: _MenuPrincipal(),
       body: _ListadeOpciones(),
@@ -24,7 +38,7 @@ class LauncherPage extends StatelessWidget {
 class _ListadeOpciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final  appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       separatorBuilder: (context, i) => Divider(
@@ -56,7 +70,7 @@ class _MenuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context);
-    final  appTheme2 = Provider.of<ThemeChanger>(context).currentTheme;
+    final appTheme2 = Provider.of<ThemeChanger>(context).currentTheme;
     return Drawer(
       child: Column(
         children: [

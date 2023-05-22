@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
       theme: currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: const LauncherPage(),
+      home:OrientationBuilder(builder: (BuildContext context, orientation) {
+        return const LauncherPage();
+      }),
     );
   }
 }

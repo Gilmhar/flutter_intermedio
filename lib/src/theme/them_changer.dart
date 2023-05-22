@@ -46,6 +46,15 @@ class ThemeChanger with ChangeNotifier {
   set customTheme(bool value) {
     _customTheme = value;
     _darkTheme = false;
+    if (value) {
+      _currentTheme = ThemeData.dark().copyWith(
+        canvasColor: const Color(0xff90A5CC),
+        primaryColorLight: Colors.white,
+        scaffoldBackgroundColor: const Color(0xff90A5CC), 
+      );
+    } else {
+      _currentTheme = ThemeData.light();
+    }
     notifyListeners();
   }
 }

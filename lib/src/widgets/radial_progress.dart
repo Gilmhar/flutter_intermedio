@@ -82,10 +82,10 @@ class _MiRadialProgress extends CustomPainter {
       this.grosorFondo, this.grosorArco);
   @override
   void paint(Canvas canvas, Size size) {
-    final Rect rect = Rect.fromCircle(center: const Offset(0, 0), radius: 180);
+    // final Rect rect = Rect.fromCircle(center: const Offset(0, 0), radius: 180);
 
-    const Gradient gradiente = LinearGradient(
-        colors: <Color>[Color(0xffC012FF), Color(0xff6D05E8), Colors.red]);
+    // const Gradient gradiente = LinearGradient(
+    //     colors: <Color>[Color(0xffC012FF), Color(0xff6D05E8), Colors.red]);
     //Circulo completo
     final paintCirculoBase = Paint()
       ..strokeWidth = grosorFondo
@@ -100,8 +100,8 @@ class _MiRadialProgress extends CustomPainter {
     //Arco
     final paintArco = Paint()
       ..strokeWidth = grosorArco
-      //..color = colorArco
-      ..shader = gradiente.createShader(rect)
+      ..color = colorArco
+      //..shader = gradiente.createShader(rect)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
