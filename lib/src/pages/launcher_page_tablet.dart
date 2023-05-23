@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:disenos_app/src/models/layout_model.dart';
+//import 'package:disenos_app/src/pages/slideshow_page.dart';
 import 'package:disenos_app/src/theme/them_changer.dart';
 import 'package:disenos_app/src/routes/routes.dart';
 
-class LauncherPage extends StatelessWidget {
-  const LauncherPage({super.key});
+class LauncherPageTablet extends StatelessWidget {
+  const LauncherPageTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    //final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     final appTheme2 = Provider.of<ThemeChanger>(context);
+    final layoutModel = Provider.of<LayoutModel>(context);
     return Scaffold(
       appBar: AppBar(
         leading: Builder(builder: (context) {
@@ -20,17 +23,37 @@ class LauncherPage extends StatelessWidget {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Icon(Icons.account_circle, color: (appTheme2.darkTheme) ? Colors.black54 : Colors.white,));
+              icon: Icon(
+                Icons.account_circle,
+                color: (appTheme2.darkTheme) ? Colors.black54 : Colors.white,
+              ));
         }),
         title: Text(
-          'Diseños en Flutter-Teléfono',
+          'Diseños en Flutter-Tablet',
           style: TextStyle(
               color: (appTheme2.darkTheme) ? Colors.black54 : Colors.white),
         ),
-        backgroundColor: appTheme.colorScheme.secondary,
+        backgroundColor: appTheme2.currentTheme.colorScheme.secondary,
       ),
       drawer: _MenuPrincipal(),
-      body: _ListadeOpciones(),
+      body: Row(
+        children: [
+          SizedBox(
+            width: 250,
+            height: double.infinity,
+            child: _ListadeOpciones(),
+          ),
+          Container(
+            width: 1,
+            height: double.infinity,
+            color: (appTheme2.darkTheme)
+                ? Colors.grey
+                : appTheme2.currentTheme.primaryColorLight,
+          ),
+          Expanded(child: layoutModel.currentPage)
+        ],
+      ),
+      //body: _ListadeOpciones(),
     );
   }
 }
@@ -56,10 +79,12 @@ class _ListadeOpciones extends StatelessWidget {
           color: appTheme.colorScheme.secondary,
         ),
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => pageRoutes[i].page));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => pageRoutes[i].page));
+          final layoutModel = Provider.of<LayoutModel>(context, listen: false);
+          layoutModel.currentPage = pageRoutes[i].page;
         },
       ),
     );

@@ -29,50 +29,60 @@ class PinterestPage extends StatelessWidget {
 class _PinterestMenuLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final widthPantalla = MediaQuery.of(context).size.width;
+    double widthPantalla = MediaQuery.of(context).size.width;
 
     final mostrar = Provider.of<_MenuModel>(context).mostrar;
 
-    final appTheme = Provider.of<ThemeChanger>(context).currentTheme; 
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
 
-    final appTheme2 = Provider.of<ThemeChanger>(context); 
+    final appTheme2 = Provider.of<ThemeChanger>(context);
+
+    if (widthPantalla > 500) {
+      widthPantalla = widthPantalla - 300;
+    }
 
     return Positioned(
         bottom: 30,
         child: SizedBox(
           width: widthPantalla,
-          child: Align(
-            child: PinterestMenu(
-              mostrar: mostrar,
-              backgroundColor: appTheme.scaffoldBackgroundColor,
-              activeColor: (appTheme2.darkTheme) ? appTheme.colorScheme.secondary : Colors.black,
-              items: [
-                PinterestButton(
-                    onPressed: () {
-                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
-                      //print('Icon pie_chart');
-                    },
-                    icon: Icons.pie_chart),
-                PinterestButton(
-                    onPressed: () {
-                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
-                      //print('Icon search');
-                    },
-                    icon: Icons.search),
-                PinterestButton(
-                    onPressed: () {
-                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
-                      //print('Icon notifications');
-                    },
-                    icon: Icons.notifications),
-                PinterestButton(
-                    onPressed: () {
-                      //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
-                      //print('Icon supervised_user_circle');
-                    },
-                    icon: Icons.supervised_user_circle),
-              ],
-            ),
+          child: Row(
+            children: [
+              const Spacer(),
+              PinterestMenu(
+                mostrar: mostrar,
+                backgroundColor: appTheme.scaffoldBackgroundColor,
+                activeColor: (appTheme2.darkTheme)
+                    ? appTheme.colorScheme.secondary
+                    : Colors.black,
+                items: [
+                  PinterestButton(
+                      onPressed: () {
+                        //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                        //print('Icon pie_chart');
+                      },
+                      icon: Icons.pie_chart),
+                  PinterestButton(
+                      onPressed: () {
+                        //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                        //print('Icon search');
+                      },
+                      icon: Icons.search),
+                  PinterestButton(
+                      onPressed: () {
+                        //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                        //print('Icon notifications');
+                      },
+                      icon: Icons.notifications),
+                  PinterestButton(
+                      onPressed: () {
+                        //Cada que se oprime el botón se puede imprimi el mensaja para comprobar que se está ejecutando la función.
+                        //print('Icon supervised_user_circle');
+                      },
+                      icon: Icons.supervised_user_circle),
+                ],
+              ),
+              const Spacer(),
+            ],
           ),
         ));
   }
@@ -114,15 +124,21 @@ class _PinterestGridState extends State<PinterestGrid> {
 
   @override
   Widget build(BuildContext context) {
+    int count;
+    if (MediaQuery.of(context).size.width > 500) {
+      count = 3;
+    } else {
+      count = 2;
+    }
     return StaggeredGridView.countBuilder(
       controller: controller,
-      crossAxisCount: 4,
+      crossAxisCount: count,
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) => _PinterestItem(
         index: index,
       ),
       staggeredTileBuilder: (int index) =>
-          StaggeredTile.count(2, index.isEven ? 2 : 3),
+          StaggeredTile.count(1, index.isEven ? 1 : 2),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
     );
